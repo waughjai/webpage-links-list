@@ -5,12 +5,12 @@ use Unirest\Request;
 use WaughJ\WebpageLinksList\WebpageLinksList;
 
 class WebpageLinksListTest extends TestCase
-{
+{/*
 	public function testRequestWorks()
 	{
 		$response = Request::get( 'https://www.google.com' );
 		$this->assertContains( '<html itemscope="" itemtype="http://schema.org/WebPage" lang="en">', $response->body );
-	}
+	}*/
 
 	public function testBrokenPage()
 	{
@@ -18,15 +18,9 @@ class WebpageLinksListTest extends TestCase
 		$this->assertEquals( [], $list->getList() );
 	}
 
-	public function testLinksList()
-	{
-		$list = new WebpageLinksList( 'https://www.4cesi.com/' );
-		$this->assertContains( 'https://www.4cesi.com/services/', $list->getList() );
-	}
-
 	public function testLinksListRecursive()
 	{
-		$list = new WebpageLinksList( 'https://www.4cesi.com/' );
-		$this->assertContains( 'https://www.4cesi.com/6-date-ideas-around-seattle-this-valentines-day/', $list->getList() );
+		$list = new WebpageLinksList( 'https://www.northwestgoldcoast.com/' );
+		$this->assertContains( 'https://www.northwestgoldcoast.com/2009/02/26/best-bites-lives-up-to-its-name/', $list->getList() );
 	}
 }

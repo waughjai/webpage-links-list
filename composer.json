@@ -14,7 +14,9 @@
 		"php": ">=7.0",
 		"mashape/unirest-php": "*",
         "symfony/dom-crawler": "^4.2",
-        "symfony/css-selector": "^4.2"
+        "symfony/css-selector": "^4.2",
+		"waughj/directory": "*",
+        "enrise/urihelper": "^1.0"
     },
     "require-dev": {
 		"phpunit/phpunit": "6.*"
