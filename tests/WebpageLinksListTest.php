@@ -6,7 +6,6 @@ use WaughJ\WebpageLinksList\WebpageLinksList;
 
 class WebpageLinksListTest extends TestCase
 {
-	/*
 	public function testBrokenPage()
 	{
 		$list = new WebpageLinksList( 'https://www.asfsafd.com' );
@@ -19,12 +18,13 @@ class WebpageLinksListTest extends TestCase
 		$this->assertContains( 'https://jaimeson-waugh.com/mega-microstories/', $list->getList() );
 		$this->assertContains( 'https://jaimeson-waugh.com/boskeopolis-land/', $list->getList() );
 	}
-	*/
 
 	public function testLinksWithoutImages()
 	{
-		$list = new WebpageLinksList( 'https://en.wikipedia.org/wiki/PHP', 100 );
-		var_dump( $list->getList() );
-		$this->assertNotContains( '.svg', $list->getList() );
+		$list = new WebpageLinksList( 'https://en.wikipedia.org/wiki/PHP', 75 );
+		foreach ( $list->getList() as $item )
+		{
+			$this->assertStringNotContainsStringIgnoringCase( 'https://upload.wikimedia.org/wikipedia/commons/3/3f/Fairytale_key_enter-2.png', $item );
+		}
 	}
 }
