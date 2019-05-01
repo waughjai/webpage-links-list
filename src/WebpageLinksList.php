@@ -15,6 +15,7 @@ namespace WaughJ\WebpageLinksList
 		{
 			$this->tried_list = [];
 			$this->list = [];
+			$this->data = [];
 			$this->list_count = 0;
 			$this->limit = $limit;
 			$this->url = $url;
@@ -27,6 +28,15 @@ namespace WaughJ\WebpageLinksList
 				$this->generateList();
 			}
 			return $this->list;
+		}
+
+		public function getData() : array
+		{
+			if ( empty( $this->data ) )
+			{
+				$this->generateList();
+			}
+			return $this->data;
 		}
 
 		private function generateList() : void
@@ -68,6 +78,7 @@ namespace WaughJ\WebpageLinksList
 					return;
 				}
 				$this->list[] = $url;
+				$this->data[ $url ] = $response;
 				$this->list_count++;
 				$this->generateListFromURL( $host, $response );
 			}
@@ -169,6 +180,7 @@ namespace WaughJ\WebpageLinksList
 
 		private $url;
 		private $list;
+		private $data;
 		private $tried_list;
 		private $list_count;
 	}

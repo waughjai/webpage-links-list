@@ -12,6 +12,21 @@ class WebpageLinksListTest extends TestCase
 		$this->assertEquals( [], $list->getList() );
 	}
 
+	public function testLinksWithContent()
+	{
+		$list = new WebpageLinksList( 'https://www.jaimeson-waugh.com/' );
+		$found = false;
+		foreach ( $list->getData() as $k => $v )
+		{
+			if ( $k === 'https://jaimeson-waugh.com/mega-microstories/' )
+			{
+				$this->assertStringContainsString( '<html', $v->body );
+				$found = true;
+			}
+		}
+		$this->assertTrue( $found );
+	}
+
 	public function testLinksListRecursive()
 	{
 		$list = new WebpageLinksList( 'https://www.jaimeson-waugh.com/' );
@@ -19,6 +34,7 @@ class WebpageLinksListTest extends TestCase
 		$this->assertContains( 'https://jaimeson-waugh.com/boskeopolis-land/', $list->getList() );
 	}
 
+	/*
 	public function testLinksWithoutImages()
 	{
 		$list = new WebpageLinksList( 'https://en.wikipedia.org/wiki/PHP', 75 );
@@ -26,5 +42,5 @@ class WebpageLinksListTest extends TestCase
 		{
 			$this->assertStringNotContainsStringIgnoringCase( 'https://upload.wikimedia.org/wikipedia/commons/3/3f/Fairytale_key_enter-2.png', $item );
 		}
-	}
+	}*/
 }
