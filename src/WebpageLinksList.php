@@ -17,21 +17,31 @@ namespace WaughJ\WebpageLinksList
 			$this->list = [];
 			$this->list_count = 0;
 			$this->limit = $limit;
-			$uri = new URI( $url );
+			$this->url = $url;
+		}
+
+		public function getList() : array
+		{
+			if ( empty( $this->list ) )
+			{
+				$this->generateList();
+			}
+			return $this->list;
+		}
+
+		private function generateList() : void
+		{
+
+			$uri = new URI( $this->url );
 			try
 			{
-				$response = Request::get( $url );
+				$response = Request::get( $this->url );
 				$this->generateListFromURL( $uri, $response );
 			}
 			catch ( \Unirest\Exception $e )
 			{
 				// Do nothing.
 			}
-		}
-
-		public function getList() : array
-		{
-			return $this->list;
 		}
 
 		private function tryURL( string $url, URI $host ) : void
@@ -154,9 +164,10 @@ namespace WaughJ\WebpageLinksList
 			{
 				return strpos( $content, 'text/html' ) === false;
 			}
-			return false;
+			return true;
 		}
 
+		private $url;
 		private $list;
 		private $tried_list;
 		private $list_count;
