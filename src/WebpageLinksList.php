@@ -41,8 +41,16 @@ namespace WaughJ\WebpageLinksList
 
 		private function generateList() : void
 		{
-
 			$uri = new URI( $this->url );
+			if ( !$uri->getScheme() )
+			{
+				$uri->setScheme( 'https' );
+			}
+			$this->url = $uri->getUri();
+			if ( !$uri->getHost() )
+			{
+				$uri->setHost( $this->url );
+			}
 			try
 			{
 				$response = Request::get( $this->url );
@@ -51,6 +59,7 @@ namespace WaughJ\WebpageLinksList
 			catch ( \Unirest\Exception $e )
 			{
 				// Do nothing.
+				echo $uri;
 			}
 		}
 
