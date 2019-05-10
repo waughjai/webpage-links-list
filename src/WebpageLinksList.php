@@ -58,8 +58,7 @@ namespace WaughJ\WebpageLinksList
 			}
 			catch ( \Unirest\Exception $e )
 			{
-				// Do nothing.
-				echo $uri;
+				// Do nothing on error.
 			}
 		}
 
@@ -91,15 +90,8 @@ namespace WaughJ\WebpageLinksList
 				$this->list_count++;
 				$this->generateListFromURL( $host, $response );
 			}
-			catch ( \Unirest\Exception $e )
-			{
-				// We should just ignore broken links & carry on.
-				return;
-			}
 			catch ( \Exception $e )
 			{
-				echo $e->getMessage();
-				var_dump( $url );
 				// We should just ignore broken links & carry on.
 				return;
 			}
