@@ -12,26 +12,21 @@ class WebpageLinksListTest extends TestCase
 		$this->assertEquals( [], $list->getList() );
 	}
 
+	public function testLinksListRecursive()
+	{
+		$list = new WebpageLinksList( 'https://www.jaimeson-waugh.com/' );
+		$this->assertContains( 'https://jaimeson-waugh.com/mega-microstories/', $list->getList() );
+		$this->assertContains( 'https://jaimeson-waugh.com/boskeopolis-land/', $list->getList() );
+	}
+
 	public function testLinksWithContent()
 	{
 		$list = new WebpageLinksList( 'https://www.jaimeson-waugh.com/' );
 		$found = false;
 		foreach ( $list->getData() as $k => $v )
 		{
-			if ( $k === 'https://jaimeson-waugh.com/mega-microstories/' )
-			{
-				$this->assertStringContainsString( '<html', $v->body );
-				$found = true;
-			}
+			$this->assertStringContainsString( '<html', $v->body );
 		}
-		$this->assertTrue( $found );
-	}
-
-	public function testLinksListRecursive()
-	{
-		$list = new WebpageLinksList( 'https://www.jaimeson-waugh.com/' );
-		$this->assertContains( 'https://jaimeson-waugh.com/mega-microstories/', $list->getList() );
-		$this->assertContains( 'https://jaimeson-waugh.com/boskeopolis-land/', $list->getList() );
 	}
 
 	/*

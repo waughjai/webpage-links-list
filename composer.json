@@ -2,7 +2,7 @@
     "name": "waughj/webpage-links-list",
     "description": "Simple class for analyzing webpage for link tags.",
     "keywords": [ "webpages" ],
-    "license": "GPL-2.0-or-later",
+    "license": "GPL-3.0-or-later",
     "authors": [
         {
             "name": "Jaimeson Waugh",
@@ -11,12 +11,12 @@
     ],
     "type": "library",
     "require": {
-		"php": ">=7.0",
+		"php": ">=7.2",
 		"mashape/unirest-php": "*",
-        "symfony/dom-crawler": "^4.2",
-        "symfony/css-selector": "^4.2",
+        "symfony/dom-crawler": ">=4.2",
+        "symfony/css-selector": ">=4.2",
 		"waughj/directory": ">=0.3.0",
-        "enrise/urihelper": "^1.0"
+        "enrise/urihelper": ">=1.0"
     },
     "require-dev": {
 		"phpunit/phpunit": "*"
